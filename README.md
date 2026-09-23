@@ -6,7 +6,6 @@ Create a private account, track your habits, maintain streaks, record daily refl
 
 ## Screenshot
 
-![Kaizen dashboard screenshot placeholder](public/assets/screenshot-placeholder.svg)
 
 ## Features
 
