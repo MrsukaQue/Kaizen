@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
-  <title id="title">Kaizen screenshot placeholder</title>
-  <description id="description">A placeholder to replace with a screenshot of the Kaizen dashboard.</description>
-  <rect width="1200" height="675" fill="#f5f7f2"/>
-  <rect x="110" y="90" width="980" height="495" rx="28" fill="#fff" stroke="#dfe6dc" stroke-width="3"/>
-  <text x="600" y="310" text-anchor="middle" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#36543d">Kaizen 🌱</text>
-  <text x="600" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="25" fill="#718075">Replace this placeholder with your dashboard screenshot</text>
-</svg>
