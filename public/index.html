@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kaizen is a calm, lightweight personal improvement tracker.">
+  <title>Kaizen — Improve a little every day</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/stats.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#dashboard" aria-label="Kaizen home">Kaizen <span>🌱</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#habits">Habits</a>
+      <a href="#statistics">Statistics</a>
+      <a href="#history">History</a>
+    </nav>
+    <span class="user-name" id="user-name" hidden></span>
+    <button class="text-button" id="logout-button" type="button" hidden>Log out</button>
+    <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch to dark mode" hidden>☾</button>
+  </header>
+
+  <section class="auth-shell" id="auth" hidden>
+    <div class="auth-intro">
+      <p class="eyebrow">Kaizen 🌱</p>
+      <h1>Grow at your<br><em>own pace.</em></h1>
+      <p>Sign in to keep your habits, reflections, and progress private to your account.</p>
+    </div>
+    <div class="auth-card">
+      <div class="auth-tabs" role="tablist" aria-label="Account access">
+        <button class="active" id="login-tab" type="button" role="tab" aria-selected="true">Log in</button>
+        <button id="register-tab" type="button" role="tab" aria-selected="false">Create account</button>
+      </div>
+      <form id="auth-form">
+        <h2 id="auth-title">Welcome back</h2>
+        <p id="auth-subtitle">Continue your improvement journey.</p>
+        <label for="email">Email</label>
+        <input id="email" type="email" maxlength="254" autocomplete="email" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" required>
+        <p class="form-error" id="auth-error" role="alert"></p>
+        <button class="primary-button" id="auth-submit">Log in</button>
+      </form>
+    </div>
+  </section>
+
+  <main id="app" hidden>
+    <section class="hero" id="dashboard" aria-labelledby="greeting">
+      <div>
+        <p class="eyebrow" id="today-date"></p>
+        <h1 id="greeting">A little better,<br><em>every day.</em></h1>
+        <p class="motivation" id="motivation"></p>
+      </div>
+      <article class="progress-card">
+        <div class="progress-heading">
+          <div>
+            <p class="eyebrow">Today's progress</p>
+            <strong id="progress-count">0 / 0 habits</strong>
+          </div>
+          <span class="progress-number" id="progress-percent">0%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Today's progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span id="progress-bar"></span>
+        </div>
+        <div class="streaks">
+          <p><span>Current streak</span><strong>🔥 <b id="current-streak">0</b> days</strong></p>
+          <p><span>Best streak</span><strong>🏆 <b id="best-streak">0</b> days</strong></p>
+          <p><span>Total completed</span><strong>✓ <b id="total-completed">0</b></strong></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="habits" aria-labelledby="habits-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Daily practice</p>
+          <h2 id="habits-title">Today's habits</h2>
+        </div>
+        <button class="primary-button" id="add-habit" type="button">+ Add habit</button>
+      </div>
+      <div class="habit-list" id="habit-list"></div>
+      <div class="empty-state" id="empty-habits">
+        <span>🌿</span>
+        <h3>Start with one small habit</h3>
+        <p>Consistency grows from simple beginnings.</p>
+      </div>
+    </section>
+
+    <section class="two-column">
+      <article class="card reflection-card">
+        <p class="eyebrow">Daily reflection</p>
+        <h2>What did you improve today?</h2>
+        <label class="sr-only" for="reflection">Today's reflection</label>
+        <textarea id="reflection" maxlength="500" placeholder="A small win, a lesson, or something you want to remember..."></textarea>
+        <div class="save-row">
+          <small id="reflection-status" aria-live="polite">Saved automatically</small>
+          <span><b id="reflection-count">0</b>/500</span>
+        </div>
+      </article>
+
+      <article class="card" id="statistics">
+        <p class="eyebrow">Last seven days</p>
+        <h2>Weekly progress</h2>
+        <div class="weekly-chart" id="weekly-chart"></div>
+      </article>
+    </section>
+
+    <section class="section history-section" id="history" aria-labelledby="history-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Your journey</p>
+          <h2 id="history-title">Kaizen history</h2>
+        </div>
+      </div>
+      <div class="history-list" id="history-list"></div>
+      <p class="empty-history" id="empty-history">Your completed days and reflections will appear here.</p>
+    </section>
+  </main>
+
+  <footer>Made for small steps and meaningful change.</footer>
+
+  <dialog id="habit-dialog">
+    <form id="habit-form" method="dialog">
+      <div class="dialog-heading">
+        <h2 id="dialog-title">Add a habit</h2>
+        <button class="icon-button" value="cancel" formnovalidate aria-label="Close">×</button>
+      </div>
+      <label for="habit-name">Habit name</label>
+      <input id="habit-name" name="habit-name" maxlength="80" autocomplete="off" placeholder="e.g. Read 10 pages" required>
+      <input id="habit-id" type="hidden">
+      <div class="dialog-actions">
+        <button class="secondary-button" value="cancel" formnovalidate>Cancel</button>
+        <button class="primary-button" id="save-habit" value="default">Save habit</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
